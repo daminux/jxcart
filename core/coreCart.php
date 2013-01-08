@@ -79,7 +79,7 @@ class coreCart
     {
 
         $iv = mcrypt_get_iv_size(MCRYPT_BLOWFISH, MCRYPT_MODE_ECB);
-        return rawurlencode(mcrypt_encrypt(MCRYPT_BLOWFISH, MYKEY, $this->_token . '::' . $price, MCRYPT_MODE_ECB, $iv));
+        return rawurlencode(mcrypt_encrypt(MCRYPT_BLOWFISH, self::MYCRYPT, $this->_token . '::' . $price, MCRYPT_MODE_ECB, $iv));
 
     }
 
@@ -88,7 +88,7 @@ class coreCart
         $out = null;
 
         $iv = mcrypt_get_iv_size(MCRYPT_BLOWFISH, MCRYPT_MODE_ECB);
-        $chaine = mcrypt_decrypt(MCRYPT_BLOWFISH, MYKEY, $token, MCRYPT_MODE_ECB, $iv);
+        $chaine = mcrypt_decrypt(MCRYPT_BLOWFISH, self::MYCRYPT, $token, MCRYPT_MODE_ECB, $iv);
         if (isset($chaine)) {
             $val = explode('::', $chaine);
             $out = new stdClass();
