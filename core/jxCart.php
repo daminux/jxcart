@@ -6,7 +6,7 @@
  * Time: 11:02
  *
  */
-ini_set( "short_open_tag", 1 );
+ini_set( "short_open_tag",1);
 require_once 'coreCart.php';
 
 class jxCart extends coreCart
