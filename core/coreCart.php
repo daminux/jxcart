@@ -17,7 +17,7 @@ class coreCart
     protected $_dataRender = array();
     protected $_actions = array('addProduct', 'deleteProduct', 'updateProduct', 'getCart', 'updateCart', 'feedbackPayment');
     protected $_defaultCartTemplate = DFTEMPLATE;
-    CONST MYCRYPT = 'monCryptage';
+    const MYCRYPT = 'monCryptage';
 
     function __construct()
     {

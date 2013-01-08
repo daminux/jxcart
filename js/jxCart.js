@@ -30,7 +30,7 @@ $(document).ready(function () {
         params = params + '&template=' + cD();
         //  console.log(event.type);
         var protocol = 'http://';
-        var hostname = 'jxcart.edatamart.fr/'
+        var hostname = HOST + '/'
         $.get(protocol + hostname, params, function (data) {
             if (event.type == 'click' || event.type == 'submit') {
                 tC(target)

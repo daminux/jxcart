@@ -15,6 +15,9 @@ include 'core/jxCart.php';
     <link rel="stylesheet" href="http://jxcart.edatamart.fr/css/jxcart.css" type="text/css">
     <script type="text/javascript" src="http://jxcart.edatamart.fr/js/jquery-1.8.3.min.js"></script>
     <script src="http://jxcart.edatamart.fr/js/jquery-ui-1.9.2.custom.min.js"></script>
+    <script type="text/javascript">
+        HOST = '<?= VHOST?>';
+    </script>
     <script type="text/javascript" src="http://jxcart.edatamart.fr/js/jxCart.js"></script>
 </head>
 
@@ -28,8 +31,10 @@ include 'core/jxCart.php';
     <div id="products">
         <ul>
             <li class="product">
-                <a class="addAction" href="?action=addProduct&name=Socket fishman&price=8.40&idProduct=201U34&token=<?= $myCart->getToken('8.40')?>">
+                <a class="addAction"
+                   href="?action=addProduct&name=Socket fishman&price=8.40&idProduct=201U34&token=<?= $myCart->getToken('8.40')?>">
                     <img alt="" src="http://jxcart.edatamart.fr/css/images/5.jpg">
+
                     <h3>Socket Fishman <br/><b>8,40 EUR</b></h3></a>
             </li>
             <li class="product">
