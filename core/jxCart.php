@@ -18,7 +18,7 @@ class jxCart extends coreCart
         $v = (object)$value;
 
         $this->addItem($v->idProduct, $v->name, $v->quantity, $v->price, $v->category, $v->variation, $v->token);
-        $this->calcTotal($v->idProduct);
+
     }
 
 
@@ -32,8 +32,7 @@ class jxCart extends coreCart
     protected function updateProduct($value)
     {
         $v = (object)$value;
-        $this->updateItem($v->idProduct, $v->quantity, $v->category, $v->variation);
-        $this->calcTotal($v->idProduct);
+        $this->updateItem($v->idProduct, $v->idPrice, $v->quantity, $v->category, $v->variation);
 
     }
 

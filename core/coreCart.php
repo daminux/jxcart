@@ -106,19 +106,21 @@ class coreCart
             if (isset($this->_cartProducts[$sku])) {
 
                 $this->_cartProducts[$sku]->quantity += $quantity;
-                if (isset($this->_cartProducts[$sku]->variation))
-                    $this->_cartProducts[$sku]->variation[$variation]->quantity += $quantity;
+//                if (isset($this->_cartProducts[$sku]->variation))
+//                    $this->_cartProducts[$sku]->variation[$variation]->quantity += $quantity;
             } else {
                 $product = new stdClass();
                 $product->price = $price;
                 $product->name = $name;
                 $product->category = $category;
-                $product->variation[$variation] = new stdClass();
-                $product->variation[$variation]->quantity = $quantity;
+//                $product->variation[$variation] = new stdClass();
+//                $product->variation[$variation]->quantity = $quantity;
                 $product->quantity = $quantity;
                 $product->idProduct = $sku;
                 $this->_cartProducts[$sku] = $product;
             }
+
+            $this->calcTotal($sku);
 
         } else {
             // GESTION DERREUR
@@ -147,13 +149,17 @@ class coreCart
     }
 
     protected
-    function updateItem($sku, $quantity, $category = null, $variation = null)
+    function updateItem($sku, $price, $quantity, $category = null, $variation = null)
     {
-        if ($quantity < 0)
-            $quantity = 1;
+        if ($this->cryptToken($price) == $token) {
+            if ($quantity < 0)
+                $quantity = 1;
 
-        $this->_cartProducts[$sku]->quantity = $quantity;
-        $this->_cartProducts[$sku]->variation[$variation] = $variation;
+            $this->_cartProducts[$sku]->quantity = $quantity;
+            $this->_cartProducts[$sku]->variation[$variation] = $variation;
+
+            $this->calcTotal($sku);
+        }
     }
 
     protected
