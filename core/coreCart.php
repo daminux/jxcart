@@ -77,7 +77,7 @@ class coreCart
 
     protected function cryptToken($price)
     {
-        return md5($price . $this->_token . self::MYCRYPT);
+        return md5($price . $this->_token .self::MYCRYPT);
     }
 
     protected function calcCart()
