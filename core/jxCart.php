@@ -6,7 +6,7 @@
  * Time: 11:02
  *
  */
-ini_set( "short_open_tag",1);
+ini_set("short_open_tag", 1);
 require_once 'coreCart.php';
 
 class jxCart extends coreCart
@@ -17,7 +17,7 @@ class jxCart extends coreCart
     {
         $v = (object)$value;
 
-        $this->addItem($v->idProduct, $v->name, $v->quantity, $v->price, $v->category, $v->variation,$v->token);
+        $this->addItem($v->idProduct, $v->name, $v->quantity, $v->price, $v->category, $v->variation, $v->token);
         $this->calcTotal($v->idProduct);
     }
 

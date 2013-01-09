@@ -77,25 +77,7 @@ class coreCart
 
     protected function cryptToken($price)
     {
-
-        $iv = mcrypt_get_iv_size(MCRYPT_BLOWFISH, MCRYPT_MODE_ECB);
-        return rawurlencode(mcrypt_encrypt(MCRYPT_BLOWFISH, self::MYCRYPT, $this->_token . '::' . $price, MCRYPT_MODE_ECB, $iv));
-
-    }
-
-    protected function decryptToken($token)
-    {
-        $out = null;
-
-        $iv = mcrypt_get_iv_size(MCRYPT_BLOWFISH, MCRYPT_MODE_ECB);
-        $chaine = mcrypt_decrypt(MCRYPT_BLOWFISH, self::MYCRYPT, $token, MCRYPT_MODE_ECB, $iv);
-        if (isset($chaine)) {
-            $val = explode('::', $chaine);
-            $out = new stdClass();
-            $out->token = $val[0];
-            $out->price = $val[1];
-        }
-        return $out;
+        return crypt($price . $this->_token, 'et');
     }
 
     protected function calcCart()
@@ -116,8 +98,7 @@ class coreCart
     protected function addItem($sku, $name, $quantity, $price, $category = null, $variation = null, $token)
     {
 
-        $decrypted = $this->decryptToken(rawurldecode($token));
-        if ($this->_token == $decrypted->token && number_format($price, 2) == number_format($decrypted->price, 2)) {
+        if ($this->cryptToken($price) == $token) {
 
             if ($quantity < 1)
                 $quantity = 1;
@@ -127,7 +108,6 @@ class coreCart
                 $this->_cartProducts[$sku]->quantity += $quantity;
                 if (isset($this->_cartProducts[$sku]->variation))
                     $this->_cartProducts[$sku]->variation[$variation]->quantity += $quantity;
-
             } else {
                 $product = new stdClass();
                 $product->price = $price;
@@ -151,7 +131,8 @@ class coreCart
 
     }
 
-    protected function deleteItem($sku, $variante)
+    protected
+    function deleteItem($sku, $variante)
     {
 
         if (isset($variante) && $this->_cartProducts[$sku]->variante[$variante]) {
@@ -165,7 +146,8 @@ class coreCart
             self::redirect('');
     }
 
-    protected function updateItem($sku, $quantity, $category = null, $variation = null)
+    protected
+    function updateItem($sku, $quantity, $category = null, $variation = null)
     {
         if ($quantity < 0)
             $quantity = 1;
@@ -174,12 +156,14 @@ class coreCart
         $this->_cartProducts[$sku]->variation[$variation] = $variation;
     }
 
-    protected function cartSummary()
+    protected
+    function cartSummary()
     {
         $this->_cartProducts;
     }
 
-    private function securePricing()
+    private
+    function securePricing()
     {
 
         echo '';

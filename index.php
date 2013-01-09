@@ -1,6 +1,6 @@
 <?
 // PUT THIS PHP CODE ON ALL PAGE
-define('VHOST', 'jxcart.edatamart.fr');
+define('VHOST', 'jxcart.edatamart.fr'); //Without http:// and last /
 define('DFTEMPLATE', 'topCart'); //Default view Template see in Tempalte Folder (without .tpl.php extension)
 include 'core/jxCart.php';
 ?>
@@ -11,14 +11,14 @@ include 'core/jxCart.php';
     <title>jxCart Free Jquery Cart || Simple to integrate as You whish</title>
     <meta charset="iso-8859-1">
     <meta name="description" content="Free jQuery Cart for shopping website">
-    <link rel="stylesheet" href="http://jxcart.edatamart.fr/css/style.css" type="text/css">
-    <link rel="stylesheet" href="http://jxcart.edatamart.fr/css/jxcart.css" type="text/css">
-    <script type="text/javascript" src="http://jxcart.edatamart.fr/js/jquery-1.8.3.min.js"></script>
-    <script src="http://jxcart.edatamart.fr/js/jquery-ui-1.9.2.custom.min.js"></script>
-    <script type="text/javascript">
-        HOST = '<?= VHOST?>';
-    </script>
-    <script type="text/javascript" src="http://jxcart.edatamart.fr/js/jxCart.js"></script>
+    <link rel="stylesheet" href="http://<?= VHOST?>/css/style.css" type="text/css">
+    <link rel="stylesheet" href="http://<?= VHOST?>/css/jxcart.css" type="text/css">
+    <script type="text/javascript" src="http://<?= VHOST?>/js/jquery-1.8.3.min.js"></script>
+    <script src="http://<?= VHOST?>/js/jquery-ui-1.9.2.custom.min.js"></script>
+    <script type="text/javascript"> HOST = '<?= VHOST?>'; </script>
+    <script type="text/javascript" src="http://<?= VHOST?>/js/jxCart.js"></script>
+
+
 </head>
 
 <body>

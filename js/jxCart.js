@@ -31,7 +31,7 @@ $(document).ready(function () {
         //  console.log(event.type);
         var protocol = 'http://';
         var hostname = HOST + '/'
-        $.get(protocol + hostname, params, function (data) {
+        $.post(protocol + hostname, params, function (data) {
             if (event.type == 'click' || event.type == 'submit') {
                 tC(target)
             }
