@@ -133,8 +133,7 @@ class coreCart
 
     }
 
-    protected
-    function deleteItem($sku, $variante)
+    protected  function deleteItem($sku, $variante)
     {
 
         if (isset($variante) && $this->_cartProducts[$sku]->variante[$variante]) {
@@ -148,8 +147,7 @@ class coreCart
             self::redirect('');
     }
 
-    protected
-    function updateItem($sku, $price, $quantity, $category = null, $variation = null)
+    protected function updateItem($sku, $price, $quantity, $category = null, $variation = null, $token)
     {
         if ($this->cryptToken($price) == $token) {
             if ($quantity < 0)
@@ -162,14 +160,12 @@ class coreCart
         }
     }
 
-    protected
-    function cartSummary()
+    protected function cartSummary()
     {
         $this->_cartProducts;
     }
 
-    private
-    function securePricing()
+    private function securePricing()
     {
 
         echo '';

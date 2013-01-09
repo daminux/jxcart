@@ -16,24 +16,20 @@ class jxCart extends coreCart
     protected function addProduct($value)
     {
         $v = (object)$value;
-
         $this->addItem($v->idProduct, $v->name, $v->quantity, $v->price, $v->category, $v->variation, $v->token);
-
-    }
-
-
-    protected function deleteProduct($value)
-    {
-        $v = (object)$value;
-        $this->deleteItem($v->idProduct, $v->variante);
     }
 
 
     protected function updateProduct($value)
     {
         $v = (object)$value;
-        $this->updateItem($v->idProduct, $v->idPrice, $v->quantity, $v->category, $v->variation);
+        $this->updateItem($v->idProduct, $v->idPrice, $v->quantity, $v->category, $v->variation, $v->token);
+    }
 
+    protected function deleteProduct($value)
+    {
+        $v = (object)$value;
+        $this->deleteItem($v->idProduct, $v->variante);
     }
 
 
