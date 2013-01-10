@@ -17,7 +17,7 @@ class coreCart
     protected $_dataRender = array();
     protected $_actions = array('addProduct', 'deleteProduct', 'updateProduct', 'getCart', 'updateCart', 'feedbackPayment');
     protected $_defaultCartTemplate = DFTEMPLATE;
-    const MYCRYPT = 'monCryptage';
+    const MYCRYPT = 'ma cle de hashage de secrete';
 
     function __construct()
     {
@@ -75,9 +75,9 @@ class coreCart
         return $html;
     }
 
-    protected function cryptToken($price)
+   static function token($price, $sku, $category = null)
     {
-        return md5($price . $this->_token . self::MYCRYPT);
+        return hash('sha256', $price . $_SESSION['jxToken'] . $category . self::MYCRYPT . $sku, false);
     }
 
     protected function calcCart()
@@ -98,7 +98,7 @@ class coreCart
     protected function addItem($sku, $name, $quantity, $price, $category = null, $variation = null, $token)
     {
 
-        if ($this->cryptToken($price) == $token) {
+        if (self::token($price, $sku, $category) == $token) {
 
             if ($quantity < 1)
                 $quantity = 1;
@@ -133,7 +133,7 @@ class coreCart
 
     }
 
-    protected  function deleteItem($sku, $variante)
+    protected function deleteItem($sku, $variante)
     {
 
         if (isset($variante) && $this->_cartProducts[$sku]->variante[$variante]) {
@@ -149,7 +149,7 @@ class coreCart
 
     protected function updateItem($sku, $price, $quantity, $category = null, $variation = null, $token)
     {
-        if ($this->cryptToken($price) == $token) {
+        if (self::token($price, $sku, $category) == $token) {
             if ($quantity < 0)
                 $quantity = 1;
 
@@ -160,18 +160,18 @@ class coreCart
         }
     }
 
+    protected function calcTotal($sku)
+    {
+        $this->_cartProducts[$sku]->total = number_format($this->_cartProducts[$sku]->quantity * $this->_cartProducts[$sku]->price, 2);
+
+    }
+
     protected function cartSummary()
     {
         $this->_cartProducts;
     }
 
-    private function securePricing()
-    {
-
-        echo '';
-
-    }
-
+    // ** MAGIC METHOD
     function __sleep()
     {
         return array('_cartProducts');
@@ -191,7 +191,7 @@ class coreCart
         $_SESSION['jxCart'] = serialize($this);
     }
 
-    // ** STATIC FUNCTION
+    // ** STATIC METHOD
 
     static function is_ajax()
     {

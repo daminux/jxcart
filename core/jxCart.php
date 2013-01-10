@@ -6,12 +6,11 @@
  * Time: 11:02
  *
  */
-ini_set("short_open_tag", 1);
+
 require_once 'coreCart.php';
 
 class jxCart extends coreCart
 {
-
 
     protected function addProduct($value)
     {
@@ -33,16 +32,9 @@ class jxCart extends coreCart
     }
 
 
-    protected function calcTotal($sku)
+    public function getToken($price,$sku)
     {
-        $this->_cartProducts[$sku]->total = number_format($this->_cartProducts[$sku]->quantity * $this->_cartProducts[$sku]->price, 2);
-
-    }
-
-
-    public function getToken($price)
-    {
-        return $this->cryptToken($price);
+        return $this->cryptToken($price,$sku);
     }
 
 
