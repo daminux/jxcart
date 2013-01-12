@@ -20,7 +20,7 @@
             </li>
             <? endforeach; ?>
         <? else: ?>
-        <center>Cart empty</center>
+        <center>Cart empty !</center>
         <? endif; ?>
     </ul>
 </div>
