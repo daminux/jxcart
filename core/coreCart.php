@@ -75,7 +75,7 @@ class coreCart
         return $html;
     }
 
-   static function token($price, $sku, $category = null)
+    static function token($price, $sku, $category = null)
     {
         return hash('sha256', $price . $_SESSION['jxToken'] . $category . self::MYCRYPT . $sku, false);
     }
@@ -104,17 +104,23 @@ class coreCart
                 $quantity = 1;
 
             if (isset($this->_cartProducts[$sku])) {
-
                 $this->_cartProducts[$sku]->quantity += $quantity;
-//                if (isset($this->_cartProducts[$sku]->variation))
-//                    $this->_cartProducts[$sku]->variation[$variation]->quantity += $quantity;
+                if (isset($variation)) {
+                    $q = $this->_cartProducts[$sku]->variation->$variation->quantity += $quantity;
+                    $p = $this->_cartProducts[$sku]->variation->$variation->price = $price;
+                    $this->_cartProducts[$sku]->variation->$variation->totalPrice = $q * $p;
+                }
+
             } else {
                 $product = new stdClass();
                 $product->price = $price;
                 $product->name = $name;
                 $product->category = $category;
-//                $product->variation[$variation] = new stdClass();
-//                $product->variation[$variation]->quantity = $quantity;
+                if ($variation) {
+                    $q = $product->variation->$variation->quantity += $quantity;
+                    $p = $product->variation->$variation->price = $price;
+                    $product->variation->$variation->totalPrice = $q * $p;
+                }
                 $product->quantity = $quantity;
                 $product->idProduct = $sku;
                 $this->_cartProducts[$sku] = $product;
@@ -133,12 +139,12 @@ class coreCart
 
     }
 
-    protected function deleteItem($sku, $variante)
+    protected function deleteItem($sku, $variation)
     {
 
-        if (isset($variante) && $this->_cartProducts[$sku]->variante[$variante]) {
-            $this->_cartProducts[$sku]->quantity -= $this->_cartProducts[$sku]->variante[$variante]->quantity;
-            unset($this->_cartProducts[$sku]->variante[$variante]);
+        if (isset($$variation) && $this->_cartProducts[$sku]->variation[$variation]) {
+            $this->_cartProducts[$sku]->quantity -= $this->_cartProducts[$sku]->variation[$variation]->quantity;
+            unset($this->_cartProducts[$sku]->variation[$variation]);
         } else {
             unset($this->_cartProducts[$sku]);
         }

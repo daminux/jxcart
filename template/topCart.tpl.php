@@ -14,7 +14,7 @@
         <? if (!empty($cart)): ?>
         <? foreach ($cart as $product): ?>
             <li data-id="3">
-                <span class="name"><?=$product->total?> | <?= $product->name ?> (<?= $product->quantity ?>)</span>
+                <span class="name"><?=$product->total?> |<?=$product->variante?> <?= $product->name ?> (<?= $product->quantity ?>)</span>
                 <input type="text" value="<?= $product->quantity ?>" class="count">
                 <a class="removeProduct" href='?action=deleteProduct&idProduct=<?= $product->idProduct ?>'>x</a>
             </li>

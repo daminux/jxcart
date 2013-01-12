@@ -33,7 +33,7 @@ include 'core/jxCart.php';
         <ul>
             <li class="product">
                 <a class="addAction"
-                   href="?action=addProduct&name=Socket fishman&price=8.40&idProduct=201U34&token=<?=jxCart::token('8.40','201U34')?>">
+                   href="?action=addProduct&name=Socket fishman&price=8.40&idProduct=201U34&token=<?=jxCart::token('8.40', '201U34')?>">
                     <img alt="" src="http://jxcart.edatamart.fr/css/images/5.jpg">
 
                     <h3>Socket Fishman <br/><b>8,40 EUR</b></h3></a>
@@ -42,27 +42,27 @@ include 'core/jxCart.php';
                 <p>Optical Mouse <br/><b>12,60EUR</b></p>
                 <span class="count">1</span>
                 <a class="addAction"
-                   href="?action=addProduct&name=Optical Mouse&price=12.60&idProduct=201k34&quantity=1&token=<?=jxCart::token('12.60','201k34')?>">AddToCart</a>
+                   href="?action=addProduct&name=Optical Mouse&price=12.60&idProduct=201k34&quantity=1&token=<?=jxCart::token('12.60', '201k34')?>">AddToCart</a>
             </li>
             <li class="product">
                 <p>Something like that<br/> <b>9,80 EUR</b></p>
                 <span class="count">1</span>
                 <a class="addAction"
-                   href="?action=addProduct&name=Something like that&price=9.80&idProduct=20h234&quantity=1&token=<?=jxCart::token('9.80','20h234')?>">AddToCart</a>
+                   href="?action=addProduct&name=Something like that&price=9.80&idProduct=20h234&quantity=1&token=<?=jxCart::token('9.80', '20h234')?>">AddToCart</a>
 
             </li>
             <li class="product">
                 <p>Once upon a time<br/> <b>36,75 EUR</b></p>
                 <span class="count">1</span>
                 <a class="addAction"
-                   href="?action=addProduct&name=Once upon a time&price=36.75&idProduct=2j1234&quantity=1&token=<?=jxCart::token('36.75','2j1234')?>">AddToCart</a>
+                   href="?action=addProduct&name=Once upon a time&price=36.75&idProduct=2j1234&quantity=1&token=<?=jxCart::token('36.75', '2j1234')?>">AddToCart</a>
 
             </li>
             <li class="product">
                 <p>Fish n Chips <br/><b>11,75 EUR</b></p>
                 <span class="count">1</span>
                 <a class="addAction"
-                   href="?action=addProduct&name=Fish n Chips&price=11.75&idProduct=2012i4&quantity=1&token=<?=jxCart::token('11.75','2012i4')?>">AddToCart</a>
+                   href="?action=addProduct&name=Fish n Chips&price=11.75&idProduct=2012i4&quantity=1&token=<?=jxCart::token('11.75', '2012i4')?>">AddToCart</a>
 
             </li>
             <li class="product">
@@ -72,11 +72,19 @@ include 'core/jxCart.php';
                         <option value="<?= $i?>"><?= $i?></option>
                         <? endfor;?>
                     </select>
+                    <select name="variation">
+                        <option value="XS">XS</option>
+                        <option value="S">S</option>
+                        <option value="M">M</option>
+                        <option value="L">L</option>
+                        <option value="XL">XL</option>
+                        <option value="XXL">XXL</option>
+                    </select>
                     <input type='hidden' name="name" value="Fish n Chips"/>
                     <input type='hidden' name="price" value="11.75"/>
                     <input type='hidden' name="idProduct" value="20cv23d"/>
                     <input type='hidden' name="action" value="addProduct"/>
-                    <input type='hidden' name="token" value="<?=jxCart::token('11.75','20cv23d')?>"/>
+                    <input type='hidden' name="token" value="<?=jxCart::token('11.75', '20cv23d')?>"/>
                     <input type='submit' name="submit" value="ajouter"/>
                 </form>
                 Fish n Chips<br/>11,75 EUR
