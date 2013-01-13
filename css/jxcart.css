@@ -2,9 +2,10 @@
 ----------------------------*/
 
 #topCart {
-    position: relative;
-    float: right;
     margin-right: 100px;
+    position: absolute;
+    right: 105px;
+    top: 0;
 }
 
 #topCart #topCart_list {
@@ -51,8 +52,10 @@
 /* .head */
 
 #topCart ul {
-    padding-bottom: 10px
+    padding-bottom: 10px;
+    /*display:none;*/
 }
+
 
 #topCart ul li {
     position: relative;

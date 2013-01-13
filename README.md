@@ -22,6 +22,7 @@ WHAT jxCART DOING FOR YOU :
  * Secure Price & sku (injection firewall)
  * Manage Quantity &  variation (no multiple variation pricing)
  * Secure token (hash SHA256 + session control + passphrase)
+ * Voucher / Coupon Discount
 
 
 ROADMAP :
@@ -38,7 +39,6 @@ NEXT RAPID EVOLUTION  :
 
 POSSIBLE CHANGES IN MEDIUM/LONG TERM :
 -------------------------
-
 New Module : Item & Sales management
 * Item import by Excel, CSV File or someThing like that.
 * Item & sales Storage via SQLITE3

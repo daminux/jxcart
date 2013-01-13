@@ -55,6 +55,7 @@ class coreCart
         } else {
             $out[$tpl] = $this->render($tpl);
         }
+
         if (self::is_ajax()) {
             $out = json_encode($out);
             echo $out;
@@ -100,13 +101,14 @@ class coreCart
 
         if (self::token($price, $sku, $category) == $token) {
 
-            if ($quantity < 1)
-                $quantity = 1;
+            $quantity = $quantity < 1 ? 1 : $quantity;
+
 
             if (isset($this->_cartProducts[$sku])) {
                 $this->_cartProducts[$sku]->quantity += $quantity;
                 if (isset($variation)) {
-                    $q = $this->_cartProducts[$sku]->variation->$variation->quantity += $quantity;
+                    $this->_cartProducts[$sku]->variation->$variation->variation = $variation;
+                    $q = $this->_cartProducts[$sku]->variation->$variation->quantity += $quantity; // CHECK SI -1
                     $p = $this->_cartProducts[$sku]->variation->$variation->price = $price;
                     $this->_cartProducts[$sku]->variation->$variation->totalPrice = $q * $p;
                 }
@@ -117,6 +119,7 @@ class coreCart
                 $product->name = $name;
                 $product->category = $category;
                 if ($variation) {
+                    $product->variation->$variation->variation = $variation;
                     $q = $product->variation->$variation->quantity += $quantity;
                     $p = $product->variation->$variation->price = $price;
                     $product->variation->$variation->totalPrice = $q * $p;
@@ -127,9 +130,6 @@ class coreCart
             }
 
             $this->calcTotal($sku);
-
-        } else {
-            // GESTION DERREUR
 
         }
 
@@ -156,8 +156,7 @@ class coreCart
     protected function updateItem($sku, $price, $quantity, $category = null, $variation = null, $token)
     {
         if (self::token($price, $sku, $category) == $token) {
-            if ($quantity < 0)
-                $quantity = 1;
+            $quantity = $quantity <= 0 ? -1 : 1;
 
             $this->_cartProducts[$sku]->quantity = $quantity;
             $this->_cartProducts[$sku]->variation[$variation] = $variation;
@@ -174,7 +173,7 @@ class coreCart
 
     protected function cartSummary()
     {
-        $this->_cartProducts;
+        return $this->_cartProducts;
     }
 
     // ** MAGIC METHOD

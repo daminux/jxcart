@@ -38,9 +38,10 @@ class jxCart extends coreCart
     }
 
 
-    public function getCart($value)
+    public function getCart()
     {
 
+        return $this->cartSummary();
     }
 
 

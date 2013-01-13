@@ -1,39 +1,34 @@
 <?php
 // PUT THIS PHP CODE ON ALL PAGE
-
 define('VHOST', 'jxcart.edatamart.fr'); //Without http:// and last /
 define('DFTEMPLATE', 'topCart'); //Default view Template see in Tempalte Folder (without .tpl.php extension)
+define('DND', 0); // ACTIVE Drag n Drop Cart Capacity
 include 'core/jxCart.php';
 ?>
-
 <!DOCTYPE html>
 <html>
 <head>
     <title>jxCart Free Jquery Cart || Simple to integrate as You whish</title>
-    <meta charset="iso-8859-1">
+    <meta charset="UTF-8">
     <meta name="description" content="Free jQuery Cart for shopping website">
     <link rel="stylesheet" href="http://<?= VHOST; ?>/css/style.css" type="text/css">
     <link rel="stylesheet" href="http://<?= VHOST; ?>/css/jxcart.css" type="text/css">
     <script type="text/javascript" src="http://<?= VHOST ?>/js/jquery-1.8.3.min.js"></script>
     <script src="http://<?= VHOST ?>/js/jquery-ui-1.9.2.custom.min.js"></script>
-    <script type="text/javascript"> HOST = '<?= VHOST ?>'; </script>
+    <script type="text/javascript"> var  HOST = '<?= VHOST ?>',  DND = <?= DND ?>; </script>
     <script type="text/javascript" src="http://<?= VHOST ?>/js/jxCart.js"></script>
-
-
 </head>
-
 <body>
 <div id="wrapper">
+    <h1>jxCart DEMO SHOPPING CART</h1>
     <div class="jxCart" id="topCart">
-        <?= $myCart->displayCart() //No argument use default template ?>
+        <?= $myCart->displayCart('topCart') //No argument use default template ?>
     </div>
-
-
     <div id="products">
         <ul>
             <li class="product">
                 <a class="addAction"
-                   href="?action=addProduct&name=Socket fishman&price=8.40&idProduct=201U34&token=<?=jxCart::token('8.40', '201U34')?>">
+                   href="?action=addProduct&name=Socket fishman&price=8.40&quantity=1&idProduct=201u34&token=<?=jxCart::token('8.40', '201u34')?>">
                     <img alt="" src="http://jxcart.edatamart.fr/css/images/5.jpg">
 
                     <h3>Socket Fishman <br/><b>8,40 EUR</b></h3></a>
@@ -91,8 +86,6 @@ include 'core/jxCart.php';
             </li class="product">
         </ul>
     </div>
-
-
 </div>
 </body>
 </html>

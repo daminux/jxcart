@@ -8,19 +8,18 @@
  */
 
 ?>
-<?= $totalCart->totalPrice . ' ||' . $totalCart->totalQuantity . ' item(s)' ?>
+<center><?= !empty($totalCart->totalPrice) ? $totalCart->totalPrice . ' € (' . $totalCart->totalQuantity . ' item' . ( $totalCart->totalQuantity > 1 ? 's)' : ')' ) .' | <a href="checkout.php">checkout</a>' : 'Empty Cart';?></center>
 <div id='topCart_list'>
     <ul>
         <? if (!empty($cart)): ?>
         <? foreach ($cart as $product): ?>
             <li data-id="3">
-                <span class="name"><?=$product->total?> |<?=$product->variante?> <?= $product->name ?> (<?= $product->quantity ?>)</span>
+                <span class="name"><?=$product->total?> € |<?=$product->variante?> <?= $product->name ?>
+                    (<?= $product->quantity ?>)</span>
                 <input type="text" value="<?= $product->quantity ?>" class="count">
                 <a class="removeProduct" href='?action=deleteProduct&idProduct=<?= $product->idProduct ?>'>x</a>
             </li>
             <? endforeach; ?>
-        <? else: ?>
-        <center>Cart empty !</center>
         <? endif; ?>
     </ul>
 </div>
