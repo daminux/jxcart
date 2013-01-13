@@ -17,12 +17,12 @@ WHAT jxCART DOING FOR YOU :
  * Ajax capacity
  * Drag and drop (from add link & add form)
  * Multiple cart and multi cart template in page
- * Add with Link simple and secure
- * Add with form with input hidden
+ * Add product with Link simple and secure or input form
  * Secure Price & sku (injection firewall)
  * Manage Quantity &  variation (no multiple variation pricing)
  * Secure token (hash SHA256 + session control + passphrase)
  * Voucher / Coupon Discount
+ * Works without javascript
 
 
 ROADMAP :
